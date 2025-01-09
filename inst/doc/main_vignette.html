@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>User Guide</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">User Guide</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(parallel)</span></code></pre></div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><code>invivoPKfit</code> is an R package to automate fitting
+pharmacokinetic/toxicokinetic models to measured concentration vs. time
+toxicokinetic data.</p>
+<p>This version of the package takes an “object-oriented” approach to
+this task.</p>
+<p>This version of the package is heavily modeled after
+<code>ggplot2</code>, and aims to provide a “grammar of PK modeling” in
+the same way that <code>ggplot2</code> provides a “grammar of
+graphics.”</p>
+<p>Just as the basic unit of <code>ggplot2</code> is a
+<code>ggplot</code> object, the basic unit of <code>invivopkfit</code>
+is a <code>pk</code> object.</p>
+<p>Just as a <code>ggplot2</code> object is essentially a data set with
+various instructions about how to visualize that data set, a
+<code>pk</code> object is essentially a data set with various
+instructions about how to fit PK models to that data set.</p>
+<p>You provide a set of instructions for building a <code>ggplot2</code>
+plot by adding <code>geom</code>, <code>stat</code>, <code>scale</code>,
+etc. commands to a <code>ggplot2</code> object using the <code>+</code>
+command (like
+<code>ggplot(my_data, aes(x=x, y=y)) + geom_point()</code>). Similarly,
+you provide a set of instructions for fitting an
+<code>invivopkfit</code> PK model by adding <code>settings</code>,
+<code>stat</code>, <code>scale</code> commands to a <code>pk</code>
+object.</p>
+<p>In <code>ggplot2</code>, you can add the instructions in any order.
+You can overwrite old instructions by adding new ones, if you change
+your mind. The package will internally re-order the instructions in the
+correct order to build the plot. <code>invivopkfit</code> works exactly
+the same way.</p>
+<p>And just as <code>ggplot2</code> doesn’t actually build the plot
+until you issue a <code>print</code> command, <code>invivoPKfit</code>
+doesn’t actually fit the model until you issue a <code>fit</code>
+command.</p>
+</div>
+<div id="the-model-fitting-workflow" class="section level1">
+<h1>The model fitting workflow</h1>
+<p>Here’s a basic example to illustrate the steps of the
+<code>invivopkfit</code> workflow.</p>
+<div id="select-data-to-be-fit" class="section level2">
+<h2>Select data to be fit</h2>
+<p>The first requirement is that the concentration vs. time data to be
+fit must be available in R in a <code>data.frame</code> format. You may
+import data from any source you like – external databases, Excel
+spreadsheets, CSV files, etc. – so long as it can be put into a
+<code>data.frame</code> format where each row is a single concentration
+vs. time observation.</p>
+<p><code>invivoPKfit</code> contains a built-in data set from the
+Concentration vs. Time Database (CvTdb) that is already in a compatible
+<code>data.frame</code> format: it is in the variable <code>cvt</code>
+that is loaded with the package. We will use this built-in data for our
+example.</p>
+<p>For the sake of keeping run time reasonable, this example will
+include data on only two of the chemicals available in the full
+<code>cvt</code> dataset.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#select data for a single chemical and species</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(cvt,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                 analyte_dtxsid <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;DTXSID8031865&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                                            <span class="st">&quot;DTXSID0020442&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>                 )</span></code></pre></div>
+</div>
+<div id="initialize-a-pk-object" class="section level2">
+<h2>Initialize a <code>pk</code> object</h2>
+<p>Now, initialize a <code>pk</code> object: the basic unit of an
+<code>invivoPKfit</code> analysis. This object contains the data to be
+fit, along with a set of instructions for how to do the model fitting.
+(Note that none of the instructions are actually carried out at this
+stage: no fitting is done until you explicitly request it.)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data)</span></code></pre></div>
+<p>When you call <code>pk()</code>, a default set of instructions will
+be supplied: how to divide the data into groups; how to pre-process the
+data; what PK models to fit to the data; what data transformations to
+apply; what error model to assume during data fitting; etc. More details
+on the instructions and how to change them will be provided below.</p>
+<p>For now, let’s accept the default instructions. It will be easier to
+understand the instructions themselves if you first understand the
+overall steps of the model fitting workflow.</p>
+<p>The model fitting workflow has four steps.</p>
+</div>
+<div id="step-1-pre-processing-data" class="section level2">
+<h2>Step 1: Pre-processing data</h2>
+<p>The first is data pre-processing. Here, variable names are
+harmonized, and the data set is cleaned, filtered, and missing values
+are imputed when necessary.</p>
+<p>Some common harmonized variable names that will be referenced in this
+document are:</p>
+<ul>
+<li>Chemical: the DTXSID for the analyte of a CvT experiment<br />
+</li>
+<li>Species: the species of the subject in a CvT experiment<br />
+</li>
+<li>Route: the route by which the Chemical was administered (iv or
+oral)<br />
+</li>
+<li>Media: the medium which was collected for analysis (blood or
+plasma)</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>  my_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>(<span class="at">suppress.messages =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                      <span class="at">keep_data_original =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">#preprocess data</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_preprocess</span>(my_pk)</span></code></pre></div>
+<p>This step adds the pre-processed data to the <code>pk</code> object
+in a new element named <code>data</code>.</p>
+</div>
+<div id="step-2-data-information" class="section level2">
+<h2>Step 2: Data information</h2>
+<p>Next, some summary information is gathered about each group of the
+data. These are things like the number of detects/non-detects, broken
+out by the different routes and media present in the data. This step
+also includes non-compartmental analysis of the data, to calculate
+things like the empirical Cmax (maximum concentration), empirical tmax
+(time of maximum concentration), and empirical AUC (area under the
+concentration-time curve). Instructions for this “data info” step are
+given in <code>my_pk$settings_data_info</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#get summary data info</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_data_info</span>(my_pk)</span></code></pre></div>
+<p>This step adds the data summary info to the <code>pk</code> object in
+a new element named <code>data_info</code>.</p>
+</div>
+<div id="step-3-pre-fitting" class="section level2">
+<h2>Step 3: Pre-fitting</h2>
+<p>Next, a “pre-fitting” step is performed. This step looks at each
+group of the data, along with the PK models to be fitted, and determines
+the following:</p>
+<ul>
+<li>Which of the PK model parameters are to be fitted for each group.
+For example, if there is no oral data in a group, then parameters that
+define oral absorption rate and oral bioavailability will not be
+fitted.</li>
+<li>The lower and upper bounds for the PK model parameters to be fitted
+for each group, which may be constant or may be derived from the data in
+some way.</li>
+<li>A starting guess at the value for each PK model parameter to be
+fitted for each group, which may be constant or may be derived from the
+data in some way.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#pre-fitting (get model parameter bounds &amp; starting values)</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_prefit</span>(my_pk)</span></code></pre></div>
+<p>This step adds the parameter lower/upper bounds and starting guesses
+to the <code>pk</code> object.</p>
+</div>
+<div id="step-4-model-fitting" class="section level2">
+<h2>Step 4: Model fitting</h2>
+<p>Finally, the model fitting can be performed. Each group of the data
+is fitted separately. By default, three different PK models are fitted
+to each group: a “flat” model, a 1-compartment model, and a
+2-compartment model.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#model fitting</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span></code></pre></div>
+<p>This step adds the fitted model parameter values to the
+<code>pk</code> object. If multiple models were fitted, and/or if
+multiple optimization algorithms (“methods”) were used to do the
+fitting, then one set of fitted model parameter values is added for each
+model and each optimization algorithm (“method”).</p>
+<p>Note that model fitting can be sped up substantially by using
+parallel processing. This is done simply by supplying argument
+<code>n_cores</code> to <code>do_fit()</code>.</p>
+<p>Time without parallel processing:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">system.time</span>(my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)) <span class="co">#without parallel processing</span></span></code></pre></div>
+<p>Time with parallel processing:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">system.time</span>(my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>))</span></code></pre></div>
+</div>
+<div id="fast-forward-to-model-fitting" class="section level2">
+<h2>Fast-forward to model fitting</h2>
+<p>Note that you coan just skip straight to the last step. If you call
+<code>do_fit()</code> on a newly-initialized <code>pk</code> object, all
+of the preceding steps will be done automatically. The following code
+will give you exactly the same results as going through each step
+individually as above.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data) </span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="post-fitting-getting-information-about-the-fitted-models" class="section level2">
+<h2>Post-fitting: Getting information about the fitted models</h2>
+<p>Once fitting has been completed, then you can use some familiar
+methods to extract information about the fitted model(s).</p>
+<div id="coefficients-residuals-and-predictions" class="section level3">
+<h3>Coefficients, residuals, and predictions</h3>
+<p>For example, you can extract the fitted model parameter values using
+<code>coef()</code>. The result will be a tibble, whose columns include
+model parameters, and whose rows uniquely identify individual data
+groups, each model fitted, and each optimization algorithm used for
+fitting.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">coef</span>(my_pk)</span></code></pre></div>
+<p>The coefficients themselves are included as a list column, to
+accommodate the fact that the number and names of coefficients will vary
+depending on the PK model, as well as on the error model. Coefficients
+can be viewed for a particular data group, model, and method by using a
+<code>tidyverse</code> data-wrangling function like
+<code>slice()</code>.</p>
+<p>For example, this code views the coefficients for the first row of
+the full coefficients table:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">coef</span>(my_pk) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="fu">as.data.frame</span>(<span class="fu">as.list</span>(coefs_vector[[<span class="dv">1</span>]]))) <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>And this views the coefficients for row 5 (the same chemical, fitted
+with the 2-compartment model instead of the 1-compartment). Note that
+there are more coefficients, and they have different names, compared to
+the 1-comaprtment model.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">coef</span>(my_pk) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span>  <span class="fu">mutate</span>(<span class="fu">as.data.frame</span>(<span class="fu">as.list</span>(coefs_vector[[<span class="dv">1</span>]]))) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>You can extract the residuals using <code>residuals()</code> (for the
+observations in the original data) using <code>predict()</code>. The
+result is a <code>tibble</code>, one row for each fitted model,
+optimization algorithm, and timepoint-value pair given by
+<code>predict()</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>my_resids <span class="ot">&lt;-</span> <span class="fu">residuals</span>(my_pk)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>my_resids <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>You can get the predicted values (for the time points, doses, and
+routes in the original data) using <code>predict()</code>. The result is
+a <code>tibble</code>, one for each fitted model; the variable
+<code>Conc_est</code> contains the predictions.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>my_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(my_pk)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>my_preds <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>If instead you want to get predicted values for new data (new
+timepoints, doses, or routes), you can do this by providing argument
+<code>newdata</code>, but you need to include the variables for the data
+group!</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">predict</span>(my_pk, <span class="at">newdata =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="at">Chemical =</span> <span class="st">&quot;DTXSID8031865&quot;</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="at">Species =</span> <span class="st">&quot;rat&quot;</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="at">Time =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.5</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="at">Time.Units =</span> <span class="st">&quot;hours&quot;</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">Conc.Units =</span> <span class="st">&quot;mg/kg&quot;</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="at">Dose =</span> <span class="dv">1</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  <span class="at">Route =</span> <span class="st">&quot;iv&quot;</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="at">Media =</span> <span class="st">&quot;plasma&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>  <span class="at">exclude =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+</div>
+<div id="plots" class="section level3">
+<h3>Plots</h3>
+<p>You can plot the fit using <code>plot()</code>, which returns a
+<code>ggplot2</code> plot object for each data group:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot</span>(<span class="at">x =</span> my_pk)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">print</span>(p<span class="sc">$</span>final_plot)</span></code></pre></div>
+<p>By default, the concentration axis is scaled the same way as the data
+was scaled for fitting. You can specify whether to dose-normalize and/or
+log-transform the plot y axis using argument
+<code>use_scale_conc</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(my_pk,</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>     <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                           <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>     )</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="fu">print</span>(p2<span class="sc">$</span>final_plot)</span></code></pre></div>
+</div>
+<div id="model-evaluation-metrics" class="section level3">
+<h3>Model evaluation metrics</h3>
+<p>You can also get model-evaluation metrics such as log-likelihood:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">logLik</span>(my_pk)</span></code></pre></div>
+<p>AIC:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">AIC</span>(my_pk)</span></code></pre></div>
+<p>BIC:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">BIC</span>(my_pk)</span></code></pre></div>
+<p>Root mean squared error (RMSE):</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">rmse</span>(my_pk)</span></code></pre></div>
+<p>R-squared for predicted vs. observed:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">rsq</span>(my_pk)</span></code></pre></div>
+<p>Average fold error:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">AFE</span>(my_pk)</span></code></pre></div>
+<p>Absolute average fold error:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">AAFE</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>You can get the pre-processed data frame itself:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>data_proc <span class="ot">&lt;-</span> <span class="fu">get_data</span>(my_pk)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>data_proc <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>And you can get summary information about the pre-processed data:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>my_data_info <span class="ot">&lt;-</span> <span class="fu">get_data_info</span>(my_pk)</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">names</span>(my_data_info)</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>my_data_info<span class="sc">$</span>data_flags <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+</div>
+<div id="toxicokinetic-statistics" class="section level3">
+<h3>Toxicokinetic statistics</h3>
+<p>You can compute derived toxicokinetic statistics, such as total
+clearance rate, half-life, steady-state plasma concentration, etc.,
+using <code>get_tkstats()</code>. (The result is a
+<code>data.frame</code> of TK stats, one for each model and optimization
+algorithm, that was fitted.)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>my_tkstats <span class="ot">&lt;-</span> <span class="fu">get_tkstats</span>(my_pk, <span class="at">suppress.messages =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>my_tkstats <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+</div>
+<div id="winning-model" class="section level3">
+<h3>Winning model</h3>
+<p>You can extract the best-fit “winning” model for each data group and
+each optimization method – determined by which one had the lowest
+AIC.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>wm <span class="ot">&lt;-</span> <span class="fu">get_winning_model</span>(my_pk)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>wm</span></code></pre></div>
+<p>If you would like to filter any of the other post-fitting outputs so
+that they include only the winning model for each data group and
+optimization method, you can do a left join of the
+<code>data.frame</code> of winning models with any of the other
+post-fitting outputs.</p>
+<p>For example, here is R-squared for the winning model only:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>rsq_df <span class="ot">&lt;-</span> <span class="fu">rsq</span>(my_pk)</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>rsq_win <span class="ot">&lt;-</span> wm <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(rsq_df)</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>rsq_win</span></code></pre></div>
+<p>If you want to plot only the winning model, you can do so by
+specifying argument <code>best_fit = TRUE</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">plot</span>(my_pk, <span class="at">best_fit =</span> <span class="cn">TRUE</span>, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>                                                   <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>  <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="anatomy-of-a-pk-object" class="section level1">
+<h1>Anatomy of a <code>pk</code> object</h1>
+<p>Let’s start at the very beginning (a very good place to start). When
+you initialize a <code>pk</code> object, what does that object actually
+contain?</p>
+<p>Here, I’ll initialize a <code>pk</code> object with all the default
+options.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data)</span></code></pre></div>
+<p>This newly-initialized <code>pk</code> object is, under the hood, a
+<code>list</code> object with the following elements:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<div id="original-data" class="section level2">
+<h2>Original data</h2>
+<p>The <code>data_original</code> element contains the data set you
+provided in argument <code>data</code>. This is the data set that will
+be fitted. In this case, it is a subset of CvTdb.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">head</span>(my_pk<span class="sc">$</span>data_original)</span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">print</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="variable-mapping" class="section level2">
+<h2>Variable mapping</h2>
+<p>The <code>mapping</code> element specifies how the variable names in
+the original data should be translated to the harmonized/standardized
+variable names that are used internally to <code>invivopkfit</code>.
+This is analogous to providing an <code>aes</code> mapping in
+<code>ggplot2</code> – and in fact, it uses the same <code>aes()</code>
+function as <code>ggplot2</code>!</p>
+<p>In <code>ggplot2</code>, you would specify which variables in your
+data map to the standardized “aesthetic” variables <code>x</code>,
+<code>y</code>, <code>color</code>, <code>shape</code>, etc., using a
+command like this:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_data, </span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> time_hr,</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>           <span class="at">y =</span> conc,</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>           <span class="at">color =</span> dose_level_normalized_corrected,</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>           <span class="at">shape =</span> <span class="fu">as.factor</span>(document_id)</span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>       )</span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>)</span></code></pre></div>
+<p>In <code>invivopkfit</code>, you specify which variables in your data
+map to the standardized variables <code>Chemical</code>,
+<code>Species</code>, <code>Time</code>, <code>Dose</code>, etc., using
+a command like this:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">pk</span>(<span class="at">data =</span> my_data,</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>   <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>                  <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>                   <span class="at">Chemical =</span> analyte_dtxsid,</span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>                   <span class="at">Chemical_Name =</span> analyte_name_original,</span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>                   <span class="at">DTXSID =</span> analyte_dtxsid,</span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>                   <span class="at">CASRN =</span> analyte_casrn,</span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>                   <span class="at">Species =</span> species,</span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>                   <span class="at">Reference =</span> fk_extraction_document_id,</span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>                   <span class="at">Media =</span> conc_medium_normalized,</span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>                   <span class="at">Route =</span> administration_route_normalized,</span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>                   <span class="at">Dose =</span> invivPK_dose_level,</span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>                   <span class="at">Dose.Units =</span> <span class="st">&quot;mg/kg&quot;</span>,</span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>                   <span class="at">Subject_ID =</span> fk_subject_id,</span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>                   <span class="at">Series_ID =</span> fk_series_id,</span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>                   <span class="at">Study_ID =</span> fk_study_id,</span>
+<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>                   <span class="at">ConcTime_ID =</span> conc_time_id,</span>
+<span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a>                   <span class="at">N_Subjects =</span> n_subjects_normalized,</span>
+<span id="cb37-19"><a href="#cb37-19" tabindex="-1"></a>                   <span class="at">Weight =</span> weight_kg,</span>
+<span id="cb37-20"><a href="#cb37-20" tabindex="-1"></a>                   <span class="at">Weight.Units =</span> <span class="st">&quot;kg&quot;</span>,</span>
+<span id="cb37-21"><a href="#cb37-21" tabindex="-1"></a>                   <span class="at">Time =</span> time_hr,</span>
+<span id="cb37-22"><a href="#cb37-22" tabindex="-1"></a>                   <span class="at">Time.Units =</span> <span class="st">&quot;hours&quot;</span>,</span>
+<span id="cb37-23"><a href="#cb37-23" tabindex="-1"></a>                   <span class="at">Value =</span> invivPK_conc,</span>
+<span id="cb37-24"><a href="#cb37-24" tabindex="-1"></a>                   <span class="at">Value.Units =</span> <span class="st">&quot;mg/L&quot;</span>,</span>
+<span id="cb37-25"><a href="#cb37-25" tabindex="-1"></a>                   <span class="at">Value_SD =</span> invivPK_conc_sd,</span>
+<span id="cb37-26"><a href="#cb37-26" tabindex="-1"></a>                   <span class="at">LOQ =</span> invivPK_loq</span>
+<span id="cb37-27"><a href="#cb37-27" tabindex="-1"></a>                 ))</span></code></pre></div>
+<p>The above command shows the default mapping that will be applied if
+you don’t specify a <code>mapping</code> argument when you call
+<code>pk</code>. It’s a series of “standardized = original” pairs, where
+the standardized <code>invivoPKfit</code> internal variable name is on
+the left-hand side, and the original data variable name is on the
+right-hand side. Here, the original data variable names are all from
+CvTdb. These are variables appearing in the <code>invivoPKfit</code>
+built-in data object <code>cvt</code>, which contains a subset of CvTdb
+data.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">names</span>(cvt)</span></code></pre></div>
+<p>At minimum, you will need to specify mappings for
+<code>Chemical</code>, <code>Species</code>, <code>Reference</code>,
+<code>Media</code>, <code>Route</code>, <code>Dose</code>,
+<code>Time</code>, <code>Value</code>, and <code>LOQ</code>. Most of
+these names are self-explanatory. <code>Media</code> refers to the
+biological media in which concentration is measured (e.g. blood, plasma,
+liver tissue). <code>Route</code> refers to the route of administration
+(e.g. intravenous or oral). <code>Time</code> refers to the time point
+at which concentration observation was made. <code>Value</code> refers
+to the measured concentration. <code>LOQ</code> refers to the limit of
+quantification of the measured concentration.</p>
+<div id="expressions-in-the-aes-mapping-specification" class="section level3">
+<h3>Expressions in the <code>aes()</code> mapping specification</h3>
+<p>Just as in <code>ggplot2</code>, you can specify expressions inside
+<code>aes</code>. This lets you specify mappings that are more
+complicated than just a simple one-to-one variable name change.</p>
+<p>For example, the mapping for <code>Reference</code> uses an
+expression:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>Reference <span class="ot">=</span> <span class="fu">as.character</span>(</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>  <span class="fu">ifelse</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>    <span class="fu">is.na</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>      documents_reference.id</span>
+<span id="cb39-5"><a href="#cb39-5" tabindex="-1"></a>    ),</span>
+<span id="cb39-6"><a href="#cb39-6" tabindex="-1"></a>    documents_extraction.id,</span>
+<span id="cb39-7"><a href="#cb39-7" tabindex="-1"></a>    documents_reference.id</span>
+<span id="cb39-8"><a href="#cb39-8" tabindex="-1"></a>  )</span>
+<span id="cb39-9"><a href="#cb39-9" tabindex="-1"></a>)</span></code></pre></div>
+<p>This expression says “For the standardized variable
+<code>Reference</code>: First look at the original variable
+<code>documents_reference.id</code>. If that variable is NA, then use
+the variable <code>documents_extraction.id</code>; otherwise, use
+<code>documents_reference.id</code>.”</p>
+<p>This mapping for <code>Reference</code> occurs because of the way
+CvTdb handles references. In CvTdb, concentration-time data are
+extracted from a particular document. For example, this may be the PDF
+of a peer-reviewed publication. The unique ID for this document is the
+“extraction ID.” However, the original reference for the data may be a
+<em>different</em> document; this is the “reference ID.” For example,
+this occurred when Wambaugh et al. 2018 (doi: 10.1093/toxsci/kfy020)
+collected and published a data set that had originally been published in
+Cruz et al. 2002 (PMID: 12434508). The “reference ID” refers to Cruz et
+al. (2002); the “extraction ID” refers to Wambaugh et al. (2018). If the
+data are instead extracted from their original reference, then
+“reference ID” is left blank (NA) and only “extraction ID” is used.</p>
+<p>You can use expressions to specify constant values for standardized
+variables, as well. The default mapping contains items like this:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>Value.Units <span class="ot">=</span> <span class="st">&quot;mg/L&quot;</span></span></code></pre></div>
+<p>This mapping says “For the standardized variable
+<code>Value.Units</code>: Don’t take the value from any variable in the
+original data. Just assign the constant value <code>&quot;mg/L&quot;</code>to this
+variable.”</p>
+</div>
+</div>
+<div id="current-status" class="section level2">
+<h2>Current status</h2>
+<p><code>my_pk$status</code> is an integer code representing the current
+status of the <code>pk</code> object in the overall <code>pk</code>
+workflow. The workflow steps are numbered like this:</p>
+<ol style="list-style-type: decimal">
+<li>Initialize the <code>pk</code> object in <code>pk()</code></li>
+<li>Preprocess data in <code>do_preprocess()</code></li>
+<li>Get data summary info (including non-compartmental analysis) in
+<code>do_data_info()</code></li>
+<li>Do pre-fitting (get parameter bounds &amp; starting values) in
+<code>do_prefit()</code></li>
+<li>Do model fitting in `do_fit()</li>
+</ol>
+<p>You can get the status of a <code>pk</code> object at any time
+using</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">get_status</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="data-grouping" class="section level2">
+<h2>Data grouping</h2>
+<p>The data may include the results of multiple experiments for multiple
+chemicals, species, routes of administration, biological media, etc. You
+control how to split up the data into batches for fitting. Do you want
+to fit a PK model to all data for a given chemical and species, even if
+that includes more than one experiment? Do you want to fit separate PK
+models to each experiment? It’s your choice.</p>
+<p>Data grouping instructions are given using a function called
+<code>facet_data()</code> (named by analogy with <code>ggplot2</code>).
+You specify data grouping using a call to <code>dplyr::vars()</code>.
+You specify data grouping using the names of the new, standardized
+variables that you created using the <code>mapping</code> argument to
+<code>pk()</code>. Whatever variables you specify, the data will be
+grouped by unique combinations of those variables.</p>
+<p>The default data grouping is the result of calling the function
+<code>facet_data()</code> with its default arguments. In other
+words,</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data)</span></code></pre></div>
+<p>is the same as</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span>   <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>  <span class="fu">facet_data</span>(<span class="at">facets =</span> dplyr<span class="sc">::</span><span class="fu">vars</span>(Chemical, Species))</span></code></pre></div>
+<p>This specification is the default grouping: if you just call
+<code>pk()</code> without adding a <code>+ facet_data()</code>
+specification, the data will be grouped by unique combinations of
+Chemical and Species.</p>
+</div>
+<div id="settings-for-data-pre-processing" class="section level2">
+<h2>Settings for data pre-processing</h2>
+<p><code>my_pk$settings_preprocess</code> contains the instructions for
+pre-processing the data. Its default value is the result of calling the
+function <code>settings_preprocess()</code> with its default arguments.
+In other words,</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data)</span></code></pre></div>
+<p>is the same as</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span> <span class="fu">settings_preprocess</span>()</span></code></pre></div>
+<p>Here are the default arguments to
+<code>settings_preprocess()</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">formals</span>(settings_preprocess)</span></code></pre></div>
+<p>Explanations of each argument follow, to show how you can control the
+data pre-processing settings.</p>
+<div id="routes_keep" class="section level3">
+<h3><code>routes_keep</code></h3>
+<p>This contains a list of the “allowed” routes of administration. Data
+will be filtered to keep only observations with routes on this list. The
+default is <code>c(&#39;oral&#39;, &#39;iv&#39;)</code>. Currently,
+<code>invivopkfit</code> only has PK models implemented for those two
+routes. So it is not recommended to change the default unless you know
+what you are doing.</p>
+</div>
+<div id="media_keep" class="section level3">
+<h3><code>media_keep</code></h3>
+<p>This contains a list of the “allowed” tissue media in which
+concentrations can be measured/predicted. Data will be filtered to keep
+only observations with media on this list.The default is
+<code>c(&#39;blood&#39;, &#39;plasma&#39;)</code>. Currently, <code>invivoPKfit</code>
+only has PK models implemented for those two media. So it is not
+recommended to change the default unless you know what you are
+doing.</p>
+</div>
+<div id="ratio_conc_dose" class="section level3">
+<h3><code>ratio_conc_dose</code></h3>
+<p>This argument gives the ratio of the mass units used for
+concentrations to the mass units used for dose. The default is 1,
+indicating the same mass units are used in each (in CvTdb, by default,
+concentrations are mg/L and doses are mg/kg). If, for example, you had
+data where concentrations were ng/L and doses were mg/kg, you would need
+to use <code>ratio_conc_dose = 1e-6</code> to indicate the ratio between
+nanograms and milligrams. During data pre-processing, concentrations are
+multiplied by <code>ratio_conc_dose</code>, so that concentration units
+harmonize with dose units.</p>
+</div>
+<div id="impute_loq-loq_group-and-calc_loq_factor" class="section level3">
+<h3><code>impute_loq</code>, <code>loq_group</code> and
+<code>calc_loq_factor</code></h3>
+<p>These arguments instruct <code>invivopkfit</code> on whether and how
+to try to impute values for limits of quantification, if LOQ values are
+missing for any observations. If <code>impute_loq = TRUE</code>, then
+missing LOQs will be imputed as follows. The data will be split into
+groups according to unique combinations of the variables specified in
+<code>loq_group</code>, which by default are Chemical, Species, Route,
+Medium, Reference. Then, the minimum detected value will be multiplied
+by <code>calc_loq_factor</code>, which is 0.9 by default. The result
+will be imputed for any missing LOQs in that <code>loq_group</code>.</p>
+<p>If, after LOQ imputation, any observations remain where both Value
+(observed concentration) and LOQ are NA, then they will be marked for
+exclusion from further analysis.</p>
+</div>
+<div id="impute_sd-sd_group" class="section level3">
+<h3><code>impute_sd</code>, <code>sd_group</code></h3>
+<p>This instructs <code>invivopkfit</code> on whether and how to try to
+impute missing values for sample standard deviations of observed
+concentrations. If <code>impute_sd = TRUE</code>, then missing SDs will
+be imputed as follows. The data will be split into groups according to
+unique combinations of the variables specified in <code>sd_group</code>.
+If there are any non-missing SDs in a group, then missing SDs will be
+imputed as the minimum non-missing SD in the group. If all SDs in a
+group are missing, then they will be imputed with 0.</p>
+</div>
+</div>
+<div id="data-information-settings" class="section level2">
+<h2>Data information settings</h2>
+<p><code>my_pk$settings_data_info</code> provides control settings for
+getting summary data information, including non-compartmental analysis.
+Its default value is the result of calling the function
+<code>settings_data_info()</code> with its default arguments.</p>
+<p>In other words,</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data)</span></code></pre></div>
+<p>is the same as</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>()</span></code></pre></div>
+<p>Here are the default arguments to
+<code>settings_data_info()</code>:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">formals</span>(settings_data_info)</span></code></pre></div>
+<div id="summary-data-information-settings" class="section level3">
+<h3>Summary data information settings</h3>
+<p>Element <code>summary_group</code> instructs <code>invivopkfit</code>
+on how to group data for calculation of summary statistics, including
+non-compartmental analysis (NCA). (Later, <code>summary_group</code> is
+also used to instruct <code>invivopkfit</code> how to group dataa to
+calculate summary TK statistics predicted by the models).</p>
+<p>Data will be split into groups according to unique combinations of
+the variables specified in <code>summary_group</code>. Then,
+non-compartmental analysis will be performed for each group using
+<code>PK::nca()</code>.</p>
+<p>For each summary group, a few basic summary statistics will also be
+computed:</p>
+<ul>
+<li>number of observations<br />
+</li>
+<li>number of detects<br />
+</li>
+<li>time of first and last observations<br />
+</li>
+<li>time of first and last detected observations</li>
+</ul>
+</div>
+</div>
+<div id="optimizer-settings" class="section level2">
+<h2>Optimizer settings</h2>
+<p><code>my_pk$optimx_settings</code> provides control settings for the
+optimizer used to fit the model(s) to the data, which is
+<code>optimx::optimx()</code>. It is the result of a call to
+<code>settings_optimx()</code> with default arguments. In other words,
+just calling <code>pk()</code> by itself is the same as</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>() <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4" tabindex="-1"></a>  <span class="fu">settings_optimx</span>()</span></code></pre></div>
+<p>Here are the default arguments to <code>settings_optimx()</code>:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">formals</span>(settings_optimx)</span></code></pre></div>
+<p>These are simply the arguments for <code>optimx::optimx()</code>:
+<code>method</code>, <code>itnmax</code>, <code>hessian</code>,
+<code>control</code>, and <code>...</code>.</p>
+<p>In general, you’ll need to choose a value for <code>method</code>
+that names one of the optimization algorithms that can handle parameters
+bounds: either <code>&quot;bobyqa&quot;</code> or <code>&quot;L-BFGS-B&quot;</code>.</p>
+</div>
+<div id="data-transformations-scalings" class="section level2">
+<h2>Data transformations (scalings)</h2>
+<p><code>my_pk$scales</code> is itself a list with elements
+<code>conc</code> and <code>time</code>, providing instructions on how
+to transform concentration and time variables before fitting any
+models.</p>
+<div id="concentration-transformations-scalings" class="section level3">
+<h3>Concentration transformations (scalings)</h3>
+<p><code>my_pk$scales$conc</code> is a result of a call to
+<code>scale_conc()</code> with the default arguments. In other words,
+<code>pk()</code> alone is the same as</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>() <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>  <span class="fu">settings_optimx</span>() <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>  <span class="fu">scale_conc</span>()</span></code></pre></div>
+<p>Here are the default arguments to <code>scale_conc()</code>:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">formals</span>(scale_conc)</span></code></pre></div>
+<div id="dose_norm" class="section level4">
+<h4><code>dose_norm</code></h4>
+<p>This instructs <code>invivopkfit</code> on whether to apply dose
+normalization before fitting – i.e., divide each observed concentration
+(and its corresponding observed standard deviation and/or LOQ, if any)
+by its corresponding dose. Dose normalization may be useful to normalize
+the residual error if the residual error is heteroscedastic and scales
+with concentration (because higher dose usually means higher
+concentration).</p>
+</div>
+<div id="log10_trans" class="section level4">
+<h4><code>log10_trans</code></h4>
+<p>This instructs <code>invivopkfit</code> whether to apply a
+<code>log10()</code> transformation to observed concentrations (and
+LOQs) before fitting. This transformation might also be useful to
+normalize heteroscedastic residual errors that scale multiplicatively
+with concentration.</p>
+</div>
+</div>
+<div id="my_pkscalestime" class="section level3">
+<h3><code>my_pk$scales$time</code></h3>
+<p>The <code>time</code> element is a result of a call to
+<code>scale_time()</code> with the default arguments (there is only
+one). Calling <code>pk()</code> by itself is the same as</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>  <span class="fu">settings_optimx</span>() <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>  <span class="fu">scale_conc</span>() <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a>  <span class="fu">scale_time</span>()</span></code></pre></div>
+<p>Here are the default arguments to <code>scale_time()</code>:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">formals</span>(scale_time)</span></code></pre></div>
+<p><code>new_units</code> instructs <code>invivokpfit</code> whether and
+how to convert observed times into different units. The default
+<code>new_units = &quot;identity&quot;</code> tells <code>invivopkfit</code> not
+to apply any transformations to the time units – retain the original
+units. Another useful option is <code>new_units = &quot;auto&quot;</code>, which
+tells <code>invivopkfit</code> to choose new units based on the midpoint
+of observed times – it will automatically choose time units that put the
+midpoint time on the order of 10, or as close as it can get to that. You
+can also specify any time units understood by
+<code>lubridate::duration()</code>, e.g. <code>minutes</code>,
+<code>hours</code>, <code>days</code>, <code>weeks</code>,
+<code>months</code>, <code>years</code>, to convert time into those
+units.</p>
+</div>
+</div>
+<div id="models-to-be-fitted" class="section level2">
+<h2>Models to be fitted</h2>
+<p><code>my_pk$stat_model</code> is a named list, with one item named
+for each model to be fitted. It is the result of a call to
+<code>stat_model()</code> with its default arguments. In other words,
+calling <code>pk()</code> by itself is the same as calling</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>() <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>  <span class="fu">settings_optimx</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>  <span class="fu">scale_conc</span>() <span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>  <span class="fu">scale_time</span>() <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a>  <span class="fu">stat_model</span>()</span></code></pre></div>
+<p>Here are the default arguments to <code>stat_model</code>:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">formals</span>(stat_model)</span></code></pre></div>
+<p>The <code>model</code> argument is a character vector (or scalar),
+listing the names of one or more models to fit to the data. The default
+value lists the three models that are already implemented and built in
+to <code>invivopkfit</code>.</p>
+</div>
+<div id="error-model-to-apply-during-fitting" class="section level2">
+<h2>Error model to apply during fitting</h2>
+<p><code>my_pk$stat_error_model</code> lists the error model to apply
+during fitting. This is the result of a call to
+<code>stat_error_model()</code> with its default arguments.</p>
+<p>In other words, calling <code>pk()</code> by itself is the same as
+calling</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span><span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>() <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a>  <span class="fu">settings_data_info</span>() <span class="sc">+</span></span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a>  <span class="fu">settings_optimx</span>() <span class="sc">+</span></span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a>  <span class="fu">scale_conc</span>() <span class="sc">+</span></span>
+<span id="cb58-6"><a href="#cb58-6" tabindex="-1"></a>  <span class="fu">scale_time</span>() <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" tabindex="-1"></a>  <span class="fu">stat_model</span>() <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8" tabindex="-1"></a>  <span class="fu">stat_error_model</span>()</span></code></pre></div>
+<p>Here are the default arguments to
+<code>stat_error_model()</code>:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a><span class="fu">formals</span>(stat_error_model)</span></code></pre></div>
+<p>There is only one default argument: <code>error_group</code>. It is
+specified, just like data grouping in <code>facet_data()</code>, using a
+call to <code>dplyr::vars()</code>.</p>
+<p>This specifies the error model as, essentially, a fixed-effects
+model. Within each data group, the data are further split into subgroups
+according to unique combinations of the variables specified in
+<code>error_group</code>. Residual errors within each error subgroup are
+assumed to be independent and identically distributed according to a
+zero-mean normal distribution with a standard deviation that is unique
+to that error subgroup.</p>
+<p>The error standard deviations for each error subgroup are
+hyperparameters of the model. They will be estimated from the data
+simultaneously with the model parameters for each data group. The
+argument <code>error_group</code> defines the number of different error
+subhgroups, and therefore the numnber of error SD hyperparameters that
+need to be estimated.</p>
+<p>If you specify <code>error_group</code> to be the same as the data
+group, then that simply means there is only one error group within each
+data group, and therefore only one error standard deviation for that
+data group.</p>
+<p>Here are three examples:</p>
+<div id="hierarchical-error-model" class="section level3">
+<h3>“Hierarchical” error model</h3>
+<p>This type of analysis fits each Chemical and Species data group, but
+sets error group to unique combinations of Chemical, Species, and
+Reference. The residual errors from each Reference will be assumed to
+obey distributions with different standard deviations during fitting,
+modeling the assumption that each individual experiment for a given
+chemical and species measures the same underlying kinetics, but may
+measure them with more or less uncertainty.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>hier_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>  <span class="fu">facet_data</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(Chemical, Species)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> <span class="fu">vars</span>(Chemical, Species, Reference)) </span></code></pre></div>
+</div>
+<div id="pooled-analysis" class="section level3">
+<h3>“Pooled” analysis</h3>
+<p>This type of analysis fits each Chemical and Species data group, and
+sets error group to be identical to data group. All residual errors
+within each Chemical-Species data group will be assumed to obey a single
+distribution with just one standard deviation, modeling the assumption
+that each individual experiment for a given chemical and species
+measures the same underlying kinetics, and that all individual
+experiments measure the underlying kinetics with the same amount of
+uncertainty.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a>pooled_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a>  <span class="fu">facet_data</span>(dplyr<span class="sc">::</span><span class="fu">vars</span>(Chemical, Species)) <span class="sc">+</span></span>
+<span id="cb61-3"><a href="#cb61-3" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> <span class="fu">vars</span>(Chemical, Species)) </span></code></pre></div>
+</div>
+<div id="separate-analysis" class="section level3">
+<h3>“Separate” analysis</h3>
+<p>This type of analysis fits each unique combination of Chemical,
+Species, and Reference, and sets error group to be identical to data
+group. In other words, each individual experiment measures different
+underlying kinetics.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>separate_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>  <span class="fu">facet_data</span>(dplyr<span class="sc">::</span><span class="fu">vars</span>(Chemical, Species, Reference)) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="#cb62-3" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> <span class="fu">vars</span>(Chemical, Species, Reference)) </span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="providing-new-instructions-for-a-pk-object" class="section level1">
+<h1>Providing new instructions for a <code>pk</code> object</h1>
+<p>If you just want to use the default fitting instructions, you can
+simply do</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data)</span>
+<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span></code></pre></div>
+<p>But if you would like to specify different instructions, you do that
+by adding settings, scales, and stats using <code>+</code>, similarly to
+the way you add layers in <code>ggplot2</code>.</p>
+<p>It doesn’t matter what order you add the instructions in.</p>
+<p>Here is an example. Notice that the instructions area added in a
+different order than shown in the “anatomy of a <code>pk</code> object`.
+That’s to emphasize that it doesn’t matter what order you add the
+instructions. Any instructions you don’t add explicitly will take their
+default values.</p>
+<p>Note that it will throw messages about replacing existing
+instructions. These are just messages for your information – they do not
+mean anything is wrong!</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(my_data) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>    <span class="co">#instructions to use an error model that puts all observations in the same group</span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> ggplot2<span class="sc">::</span><span class="fu">vars</span>(Chemical, Species)) <span class="sc">+</span></span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a>  <span class="co">#instructions for concentration scaling/transformation</span></span>
+<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a>  <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb64-6"><a href="#cb64-6" tabindex="-1"></a>             <span class="at">log10_trans =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="#cb64-7" tabindex="-1"></a>  <span class="co">#instructions for time rescaling</span></span>
+<span id="cb64-8"><a href="#cb64-8" tabindex="-1"></a>  <span class="fu">scale_time</span>(<span class="at">new_units =</span> <span class="st">&quot;auto&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-9"><a href="#cb64-9" tabindex="-1"></a>  <span class="co">#instructions to use only one method for optimx::optimx()</span></span>
+<span id="cb64-10"><a href="#cb64-10" tabindex="-1"></a>  <span class="fu">settings_optimx</span>(<span class="at">method =</span> <span class="st">&quot;L-BFGS-B&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-11"><a href="#cb64-11" tabindex="-1"></a>  <span class="co">#instructions to impute missing LOQs slightly differently</span></span>
+<span id="cb64-12"><a href="#cb64-12" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>(<span class="at">calc_loq_factor =</span> <span class="fl">0.5</span>) </span></code></pre></div>
+</div>
+<div id="checking-the-current-instructions-for-a-pk-object" class="section level1">
+<h1>Checking the current instructions for a <code>pk</code> object</h1>
+<p>You can check the current instructions for a <code>pk</code> object
+using various functions that are named <code>get_[element]</code>. This
+is (hopefully) easier than remembering how to access all the list
+elements in the <code>pk</code> object.</p>
+<div id="check-original-data" class="section level2">
+<h2>Check original data</h2>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="fu">get_data_original</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-mapping" class="section level2">
+<h2>Check mapping</h2>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="fu">get_mapping</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-status" class="section level2">
+<h2>Check status</h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="fu">get_status</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-data-grouping" class="section level2">
+<h2>Check data grouping</h2>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="fu">get_data_group</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-settings_preprocess" class="section level2">
+<h2>Check <code>settings_preprocess</code></h2>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">get_settings_preprocess</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-settings_data_info" class="section level2">
+<h2>Check <code>settings_data_info</code></h2>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">get_settings_data_info</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-settings_optimx" class="section level2">
+<h2>Check <code>settings_optimx</code></h2>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">get_settings_optimx</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-scale_conc" class="section level2">
+<h2>Check <code>scale_conc</code></h2>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="fu">get_scale_conc</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-scale_time" class="section level2">
+<h2>Check <code>scale_time</code></h2>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="fu">get_scale_time</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-stat_model" class="section level2">
+<h2>Check <code>stat_model</code></h2>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="fu">get_stat_model</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="check-stat_error_model" class="section level2">
+<h2>Check <code>stat_error_model</code></h2>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="fu">get_stat_error_model</span>(my_pk)</span></code></pre></div>
+</div>
+<div id="replacing-instructions-with-new-ones" class="section level2">
+<h2>Replacing instructions with new ones</h2>
+<p>You can then overwrite any instructions by adding new/different ones.
+Let’s say you made a mistake – you actually wanted to dose-normalize
+concentrations, but <em>not</em> log-transform them.</p>
+<p>You can change the concentration-scaling instructions by simply
+adding new ones:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a>  <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>, <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Now the new instructions have replaced the old ones.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="fu">get_scale_conc</span>(my_pk)</span></code></pre></div>
+<p>And let’s say you only want to fit the one-compartment model – you
+don’t want the default behavior, which fits the flat and two-compartment
+models as well as the one-compartment model. You can do this:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">stat_model</span>(<span class="at">model =</span> <span class="st">&quot;model_1comp&quot;</span>)</span></code></pre></div>
+<p>Now, “model_flat” and “model_2comp” models have been removed from the
+list of models to fit.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="fu">get_stat_model</span>(my_pk)</span></code></pre></div>
+</div>
+</div>
+<div id="what-happens-to-a-pk-object-as-you-go-through-the-steps-of-model-fitting-workflow" class="section level1">
+<h1>What happens to a <code>pk</code> object as you go through the steps
+of model fitting workflow</h1>
+<div id="initialization" class="section level2">
+<h2>Initialization</h2>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data)</span>
+<span id="cb80-2"><a href="#cb80-2" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<p>The only items in the <code>pk</code> object are those that contain
+the original data and instructions.</p>
+</div>
+<div id="pre-processing-data" class="section level2">
+<h2>Pre-processing data</h2>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_preprocess</span>(my_pk)</span></code></pre></div>
+<p>Re-check the names of the <code>pk</code> object:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<p>Notice that a new element <code>data</code> has been added to the
+end. This contains the pre-processed data. You can access it using the
+function <code>get_data()</code>.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="fu">get_data</span>(my_pk) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>Notice that the variables <code>Value</code> and <code>LOQ</code>
+have been translated into <code>Conc</code> and <code>Detect</code>. If
+<code>Value &lt; LOQ</code> then <code>Detect = FALSE</code>; otherwise
+<code>Detect = TRUE</code>. If <code>Detect = FALSE</code>, then
+<code>Conc = LOQ</code>; otherwise, <code>Conc = Value</code>. This is
+just a different way of presenting the same information, but it’s a bit
+easier to handle with some of the internal calculations of
+<code>invivoPKfit</code>.</p>
+<p>Also, notice that the requested time and concentration
+transformations have been applied – compare <code>Time</code> and
+<code>Time.Units</code> vs. <code>Time_trans</code> and
+<code>Time_trans.Units</code>; compare <code>Conc</code> and
+<code>Conc.Units</code> vs. <code>Conc_trans</code> and
+<code>Conc_trans.Units</code>.</p>
+<p>Notice that missing <code>LOQ</code> values have been imputed;
+compare <code>LOQ.orig</code> to <code>LOQ</code>. Similarly, missing
+<code>Value_SD</code> values have been imputed; compare
+<code>Value_SD.orig</code> and <code>Value_SD</code>. Note that the
+standard deviations are put in a new variable <code>Conc_SD</code> to
+match with the <code>Conc</code> variable. Also, note that the
+concentration transformations have been applied to the
+<code>Conc_SD</code> variable as well – see <code>Conc_SD_trans</code>.
+That way, the transformation concentration standard deviations are in
+the same units as the transformed concentrations.</p>
+<p>(A warning: If you do <code>scale_conc(log10_trans = TRUE)</code>,
+then the log10 transformation will be applied to the concentration SD as
+well as the concentration. This means you can no longer take
+<code>Conc_trans + Conc_SD</code> or <code>Conc_trans - Conc_SD</code>
+as upper and lower bounds. This math is handled correctly internal to
+<code>invivopkfit</code>, but if you extract the pre-processed data and
+use it for another purpose, be aware of that caveat!)</p>
+</div>
+<div id="data-summary-info" class="section level2">
+<h2>Data summary info</h2>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_data_info</span>(my_pk)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<p>A new element <code>data_info</code> has been added. This element is
+itself a named list containing elements <code>data_summary</code>,
+<code>data_flags</code>, <code>dose_norm_check</code>, and
+<code>nca</code>. You can extract these elements using the following
+functions:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>my_data_info <span class="ot">&lt;-</span> <span class="fu">get_data_info</span>(my_pk) <span class="co">#extracts the `data_info` element as a named list</span></span>
+<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a><span class="fu">names</span>(my_data_info)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" tabindex="-1"></a>my_nca <span class="ot">&lt;-</span> <span class="fu">get_nca</span>(my_pk) <span class="co">#extracts the `data_info$nca` element specifically</span></span></code></pre></div>
+</div>
+<div id="pre-fitting" class="section level2">
+<h2>Pre-fitting</h2>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_prefit</span>(my_pk)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<p>An new list element <code>prefit</code> has been added. It can be
+extracted using the function <code>get_prefit()</code>. It is itself a
+named list, with one element for every PK model to be fitted to the
+data.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a><span class="fu">get_prefit</span>(my_pk) <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span></code></pre></div>
+<p>Element <code>prefit$stat_error_model</code> has one element
+<code>sigma_DF</code>, which gives the starting values and lower/upper
+bounds for the error-group-specific standard deviations.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a>my_pk<span class="sc">$</span>prefit<span class="sc">$</span>stat_error_model<span class="sc">$</span>sigma_DF <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>Element <code>prefit$par_DF</code> gives the starting values and
+lower/upper bounds for each parameter of each model to be fit.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>my_pk<span class="sc">$</span>prefit<span class="sc">$</span>par_DF <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<p>Element <code>fit_check</code> gives information about whether each
+fit should be attempted (i.e., whether there are enough
+observations).</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" tabindex="-1"></a>my_pk<span class="sc">$</span>prefit<span class="sc">$</span>fit_check <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="fitting" class="section level1">
+<h1>Fitting</h1>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="fu">names</span>(my_pk)</span></code></pre></div>
+<p>The <code>pk</code> object now contains a new element
+<code>fit</code>. This is a <code>tibble</code> containing information
+about the fit for each data group, each PK model, and each optimization
+method. This table includes most of the outputs of
+<code>optimx::optimx()</code>, including information about convergence.
+It lists each parameter for each model (as in
+<code>my_pk$prefit$parDF</code>), including error-group specific sigmas
+(as in <code>my_pk$prefit$stat_error_model$sigmaDF</code>), and gives
+the final maximum-likelihood estimate for that parameter. Additionally,
+it provides information about whether each parameter estimate was at a
+lower or upper bound.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="fu">get_fit</span>(my_pk) <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<div id="keeping-track-of-workflow-status-as-you-change-instructions" class="section level2">
+<h2>Keeping track of workflow status as you change instructions</h2>
+<p>Let’s say you go through all the steps of the workflow for a
+<code>pk</code> object, all the way to fitting. And then, you change one
+of the instructions. For example, you change the concentration scaling,
+which will change the results of everything from pre-processing the data
+(step 2) onwards. Now, the fit results stored in the fitted
+<code>pk</code> object don’t match the concentration scaling stored in
+the same object. You need to re-do all steps of the workflow.</p>
+<p>However, if you had changed the error model instead, you wouldn’t
+need to re-do all steps. You’d only need to re-do the pre-fitting and
+fitting steps. The error model doesn’t affect data pre-processing or
+data summary information steps.</p>
+<p>How can you keep track of which steps you need to re-do after
+changing one or more of the instructions?</p>
+<p>The answer is that <code>invivopkfit</code> will automatically check
+the object status every time you issue a new instruction, and will
+re-set it back to the point where you need to re-do the steps of the
+workflow.</p>
+<p>Let’s say I’ve created a <code>pk</code> object. I don’t apply any
+scalings/transformations to concentration or time.</p>
+<p>The status of the newly-created <code>pk</code> object is 1.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data) <span class="sc">+</span> <span class="co">#initialize a `pk` object</span></span>
+<span id="cb97-2"><a href="#cb97-2" tabindex="-1"></a>  <span class="fu">stat_model</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">&quot;model_flat&quot;</span>,</span>
+<span id="cb97-3"><a href="#cb97-3" tabindex="-1"></a>                       <span class="st">&quot;model_1comp&quot;</span>,</span>
+<span id="cb97-4"><a href="#cb97-4" tabindex="-1"></a>                       <span class="st">&quot;model_2comp&quot;</span>)) <span class="sc">+</span> <span class="co">#add PK models to fit</span></span>
+<span id="cb97-5"><a href="#cb97-5" tabindex="-1"></a>  <span class="fu">settings_optimx</span>(<span class="at">method =</span> <span class="st">&quot;L-BFGS-B&quot;</span>) <span class="co">#use only this optimx::optimx() algorithm</span></span>
+<span id="cb97-6"><a href="#cb97-6" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="#cb97-7" tabindex="-1"></a><span class="fu">get_status</span>(my_pk) <span class="co">#status is 1</span></span></code></pre></div>
+<p>Now I do all the steps up to step 5. (If you just call
+<code>do_fit()</code>, it will fast-forward through all the steps.)</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span>
+<span id="cb98-2"><a href="#cb98-2" tabindex="-1"></a><span class="fu">get_status</span>(my_pk)</span></code></pre></div>
+<p>I can now extract the AIC for my fitted models.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a><span class="fu">AIC</span>(my_pk, <span class="at">suppress.messages =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<p>But now I realize that I should have dose-normalized the
+concentration. I do this by adding a <code>scale_conc()</code>.
+<code>invivoPKfit</code> throws a warning to tell me that the status
+will be reset back to 1.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>And in fact, the status is now reset to 1.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="fu">get_status</span>(my_pk)</span></code></pre></div>
+<p>This means that I can’t do anything that requires a fully fitted
+model – not until I re-do all the workflow steps.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="fu">coef</span>(my_pk) <span class="co">#throws an error</span></span></code></pre></div>
+<p>In effect, <code>invivopkfit</code> throws out any fit results that
+were made before I changed the concentration scaling.</p>
+<p>But after I re-fit the new model (setting the status back to 5), I
+can now extract the new AIC values.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span>
+<span id="cb103-2"><a href="#cb103-2" tabindex="-1"></a><span class="fu">get_status</span>(my_pk)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a><span class="fu">AIC</span>(my_pk, <span class="at">suppress.messages =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<p>If I wanted to keep my original fit results, and also create a new
+<code>pk</code> object that was the same except for the concentration
+scaling, then I should copy my <code>pk</code> object into a new
+variable and modify the new one.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" tabindex="-1"></a><span class="co">#fit a pk object</span></span>
+<span id="cb105-2"><a href="#cb105-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">pk</span>(<span class="at">data =</span> my_data) <span class="sc">+</span></span>
+<span id="cb105-3"><a href="#cb105-3" tabindex="-1"></a>  <span class="fu">settings_preprocess</span>(<span class="at">suppress.messages =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb105-4"><a href="#cb105-4" tabindex="-1"></a></span>
+<span id="cb105-5"><a href="#cb105-5" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(my_pk)</span>
+<span id="cb105-6"><a href="#cb105-6" tabindex="-1"></a></span>
+<span id="cb105-7"><a href="#cb105-7" tabindex="-1"></a><span class="fu">get_status</span>(my_pk) <span class="co">#status is now 5</span></span>
+<span id="cb105-8"><a href="#cb105-8" tabindex="-1"></a></span>
+<span id="cb105-9"><a href="#cb105-9" tabindex="-1"></a><span class="co">#copy it to a new variable</span></span>
+<span id="cb105-10"><a href="#cb105-10" tabindex="-1"></a>my_pk_new <span class="ot">&lt;-</span> my_pk</span>
+<span id="cb105-11"><a href="#cb105-11" tabindex="-1"></a></span>
+<span id="cb105-12"><a href="#cb105-12" tabindex="-1"></a><span class="co">#and modify scale_conc() on the new copy</span></span>
+<span id="cb105-13"><a href="#cb105-13" tabindex="-1"></a>my_pk_new <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb105-14"><a href="#cb105-14" tabindex="-1"></a></span>
+<span id="cb105-15"><a href="#cb105-15" tabindex="-1"></a><span class="fu">get_status</span>(my_pk_new) <span class="co">#status has been reset to 1 for the new copy</span></span>
+<span id="cb105-16"><a href="#cb105-16" tabindex="-1"></a><span class="fu">get_status</span>(my_pk) <span class="co">#but status of the original is still 5</span></span></code></pre></div>
+</div>
+</div>
+<div id="a-few-worked-examples" class="section level1">
+<h1>A few worked examples</h1>
+<p>Compare fits made using different data transformations.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="co">#suppress messages</span></span>
+<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>my_pk <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">settings_preprocess</span>(<span class="at">suppress.messages =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" tabindex="-1"></a></span>
+<span id="cb106-4"><a href="#cb106-4" tabindex="-1"></a><span class="co">#dose normalization, no log transformation</span></span>
+<span id="cb106-5"><a href="#cb106-5" tabindex="-1"></a>pk1 <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>, <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb106-6"><a href="#cb106-6" tabindex="-1"></a></span>
+<span id="cb106-7"><a href="#cb106-7" tabindex="-1"></a><span class="co">#log transformation, no dose normalization</span></span>
+<span id="cb106-8"><a href="#cb106-8" tabindex="-1"></a>pk2 <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">FALSE</span>, <span class="at">log10_trans =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb106-9"><a href="#cb106-9" tabindex="-1"></a></span>
+<span id="cb106-10"><a href="#cb106-10" tabindex="-1"></a><span class="co">#both normalization and log transformation</span></span>
+<span id="cb106-11"><a href="#cb106-11" tabindex="-1"></a>pk3 <span class="ot">&lt;-</span> my_pk <span class="sc">+</span> <span class="fu">scale_conc</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>, <span class="at">log10_trans =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb106-12"><a href="#cb106-12" tabindex="-1"></a></span>
+<span id="cb106-13"><a href="#cb106-13" tabindex="-1"></a><span class="co">#do fits</span></span>
+<span id="cb106-14"><a href="#cb106-14" tabindex="-1"></a>pk1 <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(pk1, <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb106-15"><a href="#cb106-15" tabindex="-1"></a>pk2 <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(pk2, <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb106-16"><a href="#cb106-16" tabindex="-1"></a>pk3 <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(pk3, <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p>Plot the results.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" tabindex="-1"></a><span class="fu">plot</span>(pk1) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a><span class="fu">plot</span>(pk2) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" tabindex="-1"></a><span class="fu">plot</span>(pk3) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<p>Note that by default, each one has been plotted using its own
+concentration transformation. We can plot them all in the same way to
+compare better: dose-normalize the concentration axis, but do not
+log-transform it.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="fu">plot</span>(pk1, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a>                                <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">plot</span>(pk2, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb111-2"><a href="#cb111-2" tabindex="-1"></a>                                <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="fu">plot</span>(pk3, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a>                                <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div id="compare-fits-made-using-different-error-models" class="section level2">
+<h2>Compare fits made using different error models</h2>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a>pk_hier <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb113-2"><a href="#cb113-2" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> <span class="fu">vars</span>(Chemical, Species, Reference))</span>
+<span id="cb113-3"><a href="#cb113-3" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="#cb113-4" tabindex="-1"></a>pk_pool <span class="ot">&lt;-</span> my_pk <span class="sc">+</span></span>
+<span id="cb113-5"><a href="#cb113-5" tabindex="-1"></a>  <span class="fu">stat_error_model</span>(<span class="at">error_group =</span> <span class="fu">vars</span>(Chemical, Species))</span>
+<span id="cb113-6"><a href="#cb113-6" tabindex="-1"></a></span>
+<span id="cb113-7"><a href="#cb113-7" tabindex="-1"></a></span>
+<span id="cb113-8"><a href="#cb113-8" tabindex="-1"></a>pk_hier <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(pk_hier, <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb113-9"><a href="#cb113-9" tabindex="-1"></a>pk_pool <span class="ot">&lt;-</span> <span class="fu">do_fit</span>(pk_pool, <span class="at">n_cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a><span class="fu">plot</span>(pk_hier, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>                                <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="fu">plot</span>(pk_pool, <span class="at">use_scale_conc =</span> <span class="fu">list</span>(<span class="at">dose_norm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb115-2"><a href="#cb115-2" tabindex="-1"></a>                                <span class="at">log10_trans =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(final_plot)</span></code></pre></div>
+<p>Many more and detailed examples can be seen in the R Markdown
+document that gives the code to produce the figures and tables for the
+manuscript.</p>
+</div>
+</div>
+<div id="how-to-add-a-new-pk-model-to-invivopkfit" class="section level1">
+<h1>How to add a new PK model to invivopkfit</h1>
+<p>Each model is an object of class <code>pk_model</code>, which is
+simply a named list giving:</p>
+<ul>
+<li><code>name</code>: The model name<br />
+</li>
+<li><code>params</code>: The model parameter names (listed as a
+character vector)<br />
+</li>
+<li><code>conc_fun</code>: The name of a function that computes
+concentrations, given model parameters, time, dose, route, and
+media<br />
+</li>
+<li><code>auc_fun</code>: The name of a function that computes AUC (area
+under the concentration time curve), given model parameters, time, dose,
+route, and media<br />
+</li>
+<li><code>params_fun</code>” The name of a function that returns bounds
+and starting points for each of the model parameters, given the
+data<br />
+</li>
+<li><code>tkstats_fun</code>: The name of a function that computes
+derived TK statistics (such as halflife, clearance rate, etc.) given
+model parameters<br />
+</li>
+<li><code>conc_fun_args</code>: Any additional arguments to the function
+in <code>conc_fun</code><br />
+</li>
+<li><code>auc_fun_args</code>: Any additional arguments to the function
+in <code>auc_fun</code><br />
+</li>
+<li><code>params_fun_args</code>: Any additional arguments to the
+function in <code>params_fun</code><br />
+</li>
+<li><code>tkstats_fun_args</code> : Any additional arguments to the
+function in <code>tkstats_fun</code></li>
+</ul>
+<p>For example, here is the list for the built-in model
+<code>model_1comp</code>:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="st">`</span><span class="at">model_1comp</span><span class="st">`</span></span></code></pre></div>
+<p>And here is the list for the built-in model
+<code>model_2comp</code>:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="st">`</span><span class="at">model_2comp</span><span class="st">`</span></span></code></pre></div>
+<p>You can define a new model by first writing each of the required
+functions above for that model:</p>
+<ul>
+<li>a concentration function <code>conc_fun</code> that calculates
+concentration as a function of dose, time, and model parameters</li>
+<li>an AUC function <code>auc_fun</code> that calculates area under the
+concentration-time curve as a function of dose, time, and model
+parameters</li>
+<li>a parameters function <code>params_fun</code> that takes in the data
+and returns a <code>data.frame</code> whose rows give the names of the
+model parameters, whether to estimate them from the data, a starting
+guess for each parameter, and lower and upper bounds for each
+parameter</li>
+<li>a TK-stats function <code>tkstats_fun</code> to calculate summary TK
+statistics from the fitted model coefficients.</li>
+</ul>
+<p>Source the R scripts containing those functions, so that R knows
+those functions by name.</p>
+<p>Then use the command <code>pk_model()</code>, whose named arguments
+correspond to the items in the named list above. Supply
+<code>pk_model()</code> with values for each argument giving the names
+of the new functions you have written. Assign the result to an R
+variable, which will contain your new <code>pk_model</code> object.</p>
+<p>That new model object will persist for the duration of your R session
+(unless you remove it), and will need to be re-defined if you restart R.
+You can save your new model object by, for example, calling
+<code>saveRDS()</code> to save it as a .Rds file in a location of your
+choice, and then load it by calling <code>loadRDS()</code>.</p>
+<div id="model-function-requirements" class="section level2">
+<h2>Model function requirements</h2>
+<p>Here are the requirements for each of those functions (which can also
+be found in <code>help(pk_model)</code>):</p>
+<div id="conc_fun-requirements" class="section level3">
+<h3><code>conc_fun</code> requirements</h3>
+<p><code>conc_fun</code> should be a function that takes the following
+named arguments, and returns a numeric vector of predicted tissue
+concentrations:</p>
+<ul>
+<li><code>params</code>: A named list of parameter values</li>
+<li><code>time</code>: A numeric vector of time values</li>
+<li><code>dose</code>: A numeric vector of dose values. Currently, only
+a single bolus dose at time 0 is supported.</li>
+<li><code>route</code>: A character vector of the route of
+administration. Currently, only <code>&#39;oral&#39;</code> and
+<code>&#39;iv&#39;</code> are supported.</li>
+<li><code>medium</code>: The tissue in which concentration is to be
+predicted. Currently, only <code>&#39;blood&#39;</code> and
+<code>&#39;plasma&#39;</code> are supported.</li>
+</ul>
+<p>See <code>cp_1comp()</code>, <code>cp_2comp()</code>,
+<code>cp_flat()</code> for examples.</p>
+</div>
+<div id="auc_fun-requirements" class="section level3">
+<h3><code>auc_fun</code> requirements</h3>
+<p><code>auc_fun</code> should be a function that takes the same
+arguments as <code>conc_fun</code>, and returns a numeric vector of
+predicted tissue AUCs (area under the concentration-time curve).</p>
+<p>See <code>auc_1comp()</code>, <code>auc_2comp()</code>,
+<code>auc_flat()</code> for examples.</p>
+</div>
+<div id="params_fun-requirements" class="section level3">
+<h3><code>params_fun</code> requirements</h3>
+<p><code>params_fun</code> should be a function whose first argument is
+a <code>data.frame</code>, which will be the pre-processed data using
+<code>invivopkfit</code> harmonized variable names. It may take
+additional arguments, which can be provided in
+<code>params_fun_args</code>. The function should return a
+<code>data.frame</code> with the following variables:</p>
+<ul>
+<li><code>param_name</code>: Character vector, listing parameter names
+for the model</li>
+<li><code>param_units</code>: Character vector, listing units of each
+model parameter</li>
+<li><code>optimize_param</code>: Logical (TRUE/FALSE), whether each
+parameter is to be estimated given the available data</li>
+<li><code>use_param</code>: Logical (TRUE/FALSE), whether each parameter
+is to be used in the model even if it is not estimated (i.e., if a
+parameter value is to be held constant while the others are estimated,
+then <code>optimize_param</code> should be FALSE but
+<code>use_param</code> should be TRUE) -<code>lower_bound</code>:
+Numerical. Lower bounds for each parameter. May be <code>-Inf</code> if
+no lower bound. If <code>optimize_param</code> or <code>use_param</code>
+is FALSE, thenthe corresponding <code>lower_bound</code> will be ignored
+(because the parameter is not being estimated from the data).</li>
+<li><code>upper_bound</code>: Numerical. Upper bounds for each
+parameter. May be <code>Inf</code> if no upper bound. If
+<code>optimize_param</code> or <code>use_param</code> is FALSE, then the
+corresponding <code>upper_bound</code> will be ignored (because the
+parameter is not being estimated from the data).</li>
+<li><code>start</code>: Numerical. Starting values for estimating each
+parameter. If <code>optimize_param</code> is FALSE and
+<code>use_param</code> is TRUE, then the parameter will be held constant
+at the corresponding value in <code>start</code>. If
+<code>use_param</code> is FALSE, then the corresponding
+<code>start</code> will be ignored.</li>
+</ul>
+<p>See <code>get_params_flat()</code>, <code>get_params_1comp()</code>,
+<code>get_params_2comp()</code> for examples.</p>
+</div>
+<div id="tkstats_fun-requirements" class="section level3">
+<h3><code>tkstats_fun</code> requirements</h3>
+<p><code>tkstats_fun</code> should be a function which accepts a vector
+of model parameter values and calculates derived summary toxicokinetic
+statistics (e.g. total clearance, halflife, AUC, volume of distribution
+at steadystate).</p>
+<p>The function must take the following named arguments:</p>
+<ul>
+<li><code>pars</code>: A named numeric vector of model parameter
+values.</li>
+<li><code>route</code>: A character scalar naming a route (e.g. “oral”
+or “iv”)</li>
+<li><code>medium</code>: A character scalar naming a tissue medium of
+analysis (e.g. “blood” or “plasma”)</li>
+<li><code>dose</code>: A numeric scalar giving a dose level for which to
+calculate TK statistics</li>
+<li><code>time_unit</code>: A character scalar giving the units of
+time</li>
+<li><code>conc_unit</code>: A character scalar giving the units of
+concentration</li>
+<li><code>vol_unit</code>: A character scalar giving the units of
+volume</li>
+</ul>
+<p>The function should return a <code>data.frame</code> of derived
+toxicokinetic statistics, which should include the following named
+variables:</p>
+<ul>
+<li><code>param_name</code>: A character vector giving the names of each
+derived TK statistic</li>
+<li><code>param_value</code>: A character vector giving the values of
+each derived TK statistic</li>
+<li><code>param_units</code>: A character vector giving the units of
+each derived TK statistic</li>
+</ul>
+<p>It is recommended (although not required) that the function return at
+least the following statistics, using these names in the
+<code>param_name</code> variable:</p>
+<ul>
+<li><code>CLtot</code>: Total clearance rate (units of volume/time)</li>
+<li><code>CLtot/Fgutabs</code>: Total clearance rate scaled by gut
+absorption fraction (if gut absorption fraction is available) (units of
+volume/time)</li>
+<li><code>Css</code>: The steady-state concentration after a long-term
+daily dose of <code>dose</code> (units of concentration)</li>
+<li><code>halflife</code>: The terminal half-life (units of time)</li>
+<li><code>tmax</code>: The time of peak concentration (units of
+time)</li>
+<li><code>Cmax</code>: The peak concentration (units of time)</li>
+<li><code>AUC_infinity</code>: The area under the concentration-time
+curve, calculated at infinite time (units of concentration * time)</li>
+<li><code>Vdist_ss</code>: The volume of distribution at steady-state
+(units of volume)</li>
+<li><code>Vdist_ss/Fgutabs</code>: The volume of distribution at
+steady-state scaled by gut absorption fraction (if gut absorption
+fraction is available) (units of volume)</li>
+</ul>
+<p>The recommendation to return these statistics, using these names, is
+intended to make it easier to compare TK statistics across models, and
+to compare TK statistics to the results of non-compartmental analysis.
+If these names are not used, then some outputs of
+<code>eval_tkstats()</code> will not be very useful. The automated
+comparison of TK stats from the winning model to the results of
+non-compartmental analysis relies on these names being present in the
+output of <code>tkstats_fun</code> to match the names of the statistics
+output from NCA; it shouldn’t crash without them, but the results won’t
+be very useful. And TK stats compiled across models will not be easy to
+compare if the models use different names for the statistics.</p>
+<p>For examples, see <code>tkstats_1comp()</code>,
+<code>tkstats_2comp()</code>.</p>
+</div>
+</div>
+<div id="caveats" class="section level2">
+<h2>Caveats</h2>
+<p>Currently, some functions in <code>invivopkfit</code> may assume
+particular units for the data, and therefore particular units for the
+fitted model parameters. For example, time is generally assumed to be in
+units of hours. We plan to relax these assumptions in future releases of
+<code>invivoPKfit</code>.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
